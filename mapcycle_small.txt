@@ -1,0 +1,23 @@
+arcate_aof checkpoint
+christmas_house_coop checkpoint
+de_centered_v1 checkpoint 
+//de_prodigy_coop checkpoint
+cs_downtown_coop checkpoint
+inferno_new_v1 checkpoint
+cs_italy_coop checkpoint
+de_mirage_csco_pb4 checkpoint
+jack_hammer_coopvfix checkpoint
+de_aqueduct_d checkpoint
+c2m2_fairgrounds_d checkpoint
+de_vertigo_coop checkpoint
+l4d2_bridge checkpoint
+l4d_airport_terminal_b3 checkpoint
+l4d_ga_b2_day checkpoint
+ins_tosca_v1 checkpoint
+l4d_mercy_hospital_b5 checkpoint
+gauntlet checkpoint
+cs_office_coop_b2 checkpoint
+shrine_coop_v1 checkpoint
+cs_agency_ins_b2 checkpoint
+cobblestone checkpoint
+

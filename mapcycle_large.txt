@@ -1,0 +1,14 @@
+oms_corridor_coopb3 checkpoint
+estates_b4 checkpoint
+estates_b4 conquer
+estates_b4 hunt
+sotu_city checkpoint
+frequency hunt
+frequency conquer
+frequency checkpoint
+crossbow checkpoint
+crossbow conquer
+crossbow hunt
+badlands_b1 checkpoint
+badlands_b1 conquer
+badlands_b1 hunt

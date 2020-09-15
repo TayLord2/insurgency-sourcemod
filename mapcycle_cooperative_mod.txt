@@ -1,0 +1,154 @@
+//**** WORKSHOP MAPS ****//
+cobblestone checkpoint
+cs_workout_v1 checkpoint
+cs_agency_ins_b2 checkpoint
+dust_new checkpoint
+dust_new hunt
+pipeline_coop checkpoint
+nightfall_coopv1_2 checkpoint
+pl_minecraft_redstone_f15_ins_b checkpoint
+shrine_coop_v1 checkpoint
+bunker_busting_coop_ws checkpoint
+block_party_coop_ws checkpoint
+dusty_anguish_coopvfix checkpoint
+ins_abdallah_coop_fix checkpoint //no mm
+congress conquer
+congress hunt
+de_mirage_csco_pb4 checkpoint //mm fun map
+ps7 checkpoint //mm awesome siberia sniper + assault
+ins_tosca_v1 checkpoint //mm fantastic map like italy
+takbar checkpoint //mm awesome difficult
+tet_b1 checkpoint //mm Amazing
+tet_b1 hunt
+tet_b1 conquer
+depot_ws_1 checkpoint
+jack_hammer_coopvfix checkpoint //mm awesome did with Al
+l4d_airport_terminal_b3 checkpoint //mm
+crossbow checkpoint //mm
+crossbow conquer
+crossbow hunt
+badlands_b2 checkpoint //mm
+badlands_b2 conquer
+badlands_b2 hunt
+fortress_coop_ws checkpoint //mm incredibly unique map
+amber_spirits_coop checkpoint  //mm squicky doors
+l4d2_bridge checkpoint //mm
+inferno_new_v1 checkpoint //mm
+cs_italy_coop checkpoint //mm 10!
+de_vertigo_coop checkpoint //mm
+szepezd_redux_coop checkpoint //mm
+de_train_csgo_pb2 checkpoint //mm 10!
+congress_coop checkpoint //mm
+clean_sweep_coop_ws checkpoint //mm
+winter_rescue_ws checkpoint //mm
+station_aof checkpoint //mm
+kandagal_aof checkpoint //mm
+the_burbs_coop checkpoint //mm
+baghdad_b5 checkpoint //no mm
+gizab_aof checkpoint //mm difficult
+launch_control_coop_ws checkpoint //mm 
+hideout_b2 hunt //mm
+peak_coop checkpoint //mm
+frequency hunt //mm
+frequency conquer
+de_centered_v1 checkpoint //mm small
+fairgrounds checkpoint
+almaden_coop_v1_1 checkpoint //mm awesome
+anbar_coop checkpoint //mm lots of 1 story sniper buildings
+iron_express_b2 checkpoint //mm rainbow oil
+cs_downtown_coop checkpoint //mm fun small
+christmas_house_coop checkpoint //amazing small
+healthcenter_coop_fixbysakey checkpoint //mm great
+jail_break_coop_ws checkpoint //mm awesome, but hard to navigate and need flashlight
+sotu_city checkpoint //mm really big
+l4d_viennacalling_city_b1 checkpoint //mm
+shellshock checkpoint
+ins_bridgeatremagen_coop checkpoint
+ins_bridgeatremagen_coop hunt
+ins_bridgeatremagen_coop conquer
+shellshock hunt
+fairgrounds hunt
+baghdad_b5 hunt
+cobblestone hunt
+almaden_coop_v1_1 hunt
+dusty_anguish_coopvfix hunt
+amber_spirits_coop hunt
+
+//iffy
+ps7 hunt
+jail_break_op_a01 hunt //hard to navigate if you haven't played
+de_coldwater checkpoint //mm water graphics
+oms_corridor_coopb3 checkpoint //glitchy for me when playing players connected
+shop_invasion_coop_b2 checkpoint //no mm, but great
+bridge_coop_optimized_v1 checkpoint //no mm
+warehouse_coopv3b4 checkpoint //no mm some weird graphics. Long. Needs like 40 bots Goes till M
+//crossbow survival //mm
+caves_coop checkpoint //no mm
+de_breach_d checkpoint //mm some weird graphics outside
+cs_office_coop_b2 checkpoint //mm grouped spawns
+l4d_ga_b2_day checkpoint //mm good
+docks_coopb2_day checkpoint //mm areas you can get stuck int
+convoy_coopv1 checkpoint //no mm broken bridge with point in middle
+estates_b4 checkpoint //mm
+estates_b4 conquer
+estates_b4 hunt
+panama_canal_b2 checkpoint
+panama_canal_b2 conquer
+panama_canal_b2 hunt
+arcate_aof checkpoint //mm small
+zagros_convoy_b5 checkpoint //no mm and very difficult. sniped
+//estates_b4 survival
+de_aqueduct_d checkpoint // great map
+de_aqueduct_d hunt //some weird spawns
+
+//sdk_oil_d hunt
+//de_prodigy_coop checkpoint //mm small
+
+//**** OFFICIAL HUNT DAY ****//
+buhriz hunt
+contact hunt
+district hunt
+drycanal hunt
+embassy hunt
+kandagal hunt
+market hunt
+ministry hunt
+revolt hunt
+siege hunt
+sinjar hunt
+station hunt
+uprising hunt
+verticality hunt
+
+//**** OFFICIAL CHECKPOINT ****//
+buhriz_coop checkpoint
+contact_coop checkpoint
+drycanal_coop checkpoint
+district_coop checkpoint
+embassy_coop checkpoint //40
+heights_coop checkpoint
+market_coop checkpoint 
+ministry_coop checkpoint
+revolt_coop checkpoint
+siege_coop checkpoint
+sinjar_coop checkpoint
+tell_coop checkpoint
+verticality_coop checkpoint
+
+//**** OFFICIAL CONQUER DAY ****//
+buhriz conquer
+contact conquer
+drycanal conquer
+district conquer
+embassy conquer
+heights conquer
+kandagal conquer
+market conquer
+ministry conquer
+revolt conquer
+siege conquer
+sinjar conquer
+station conquer
+tell conquer
+uprising conquer
+verticality conquer

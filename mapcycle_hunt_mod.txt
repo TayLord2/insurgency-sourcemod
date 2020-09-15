@@ -1,0 +1,32 @@
+buhriz hunt
+contact hunt
+district hunt
+embassy hunt
+kandagal hunt
+heights hunt
+market hunt
+ministry hunt
+revolt hunt
+siege hunt
+sinjar hunt
+station hunt
+uprising hunt
+verticality hunt
+tet_b1 hunt //mm 10!
+crossbow hunt //mm 10! snow start trains
+hideout_b2 hunt //mm 10!
+badlands_b2 hunt //mm big map start run
+frequency hunt //mm hard crazy stairs for days
+estates_b4 hunt //mm big map lot of running
+panama_canal_b2 hunt
+congress hunt //mm
+dust_new hunt
+jail_break_op_a01 hunt //no mm
+ins_bridgeatremagen_coop hunt
+cobblestone hunt
+shellshock hunt
+fairgrounds hunt
+baghdad_b5 hunt
+almaden_coop_v1_1 hunt
+dusty_anguish_coopvfix hunt
+amber_spirits_coop hunt

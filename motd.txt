@@ -1,0 +1,9 @@
+&C&h&e&c&k&p&o&i&n&t& &a&n&d& &C&o&n&q&u&e&r&:
+Player respawns (2 by default) are individual and reset once objectives are taken/destroyed
+Botcounts for 1p/2p/3p/4p are 12/16/20/24
+&H&u&n&t&:
+Bots will respawn until cache is destroyed. Explosive kills are permanent
+Players have 2 shared respawns to start
+Players gain 1 life per 8/15 Insurgents killed for 1p-2p/3p-4p
+Bot counts for 1p/2p/3p/4p are 25/28/31/34
+

@@ -34,7 +34,7 @@ new Handle:bPlayerRespawnEnabled = INVALID_HANDLE;
 new Handle:bRespawnsResetAfterObjective = INVALID_HANDLE;
 new Handle:iLifeBase = INVALID_HANDLE;
 new Handle:iLifeBase_1 = INVALID_HANDLE;
-new Handle:iRespawnDelay = INVALID_HANDLE;
+new Handle:iRespawnDelay = INVALID_HANDLE; //No longer used as game can possibly end
 new Handle:bIndividualLives = INVALID_HANDLE;
 
 //player respawn cvars for hunt
@@ -86,7 +86,7 @@ public void OnPluginStart()
     bPlayerRespawnEnabled = CreateConVar("enable_player_respawn", "1", "Enable Respawn Players");
     iLifeBase = CreateConVar("lifecount", "2", "Respawns per team or player");
     iLifeBase_1 = CreateConVar("lifecount_1", "5", "Respawns for single player");
-    iRespawnDelay = CreateConVar("delay", "0", "Delay till player is respawned");
+    iRespawnDelay = CreateConVar("delay", "0", "Delay till player is respawned"); //No longer used as game can possibly end
     bRespawnsResetAfterObjective = CreateConVar("reset", "1", "Reset lifecount after each objective");
     bIndividualLives = CreateConVar("mode", "1", "1 - Individual lives, 0 - Team lives");
 
@@ -116,7 +116,7 @@ public void OnPluginStart()
     // player respawn
     HookConVarChange(bPlayerRespawnEnabled, CvarChangeEnabled);
     HookConVarChange(iLifeBase, CvarChangeLifeCount);
-    HookConVarChange(iRespawnDelay, CvarChange);
+    HookConVarChange(iRespawnDelay, CvarChange); //No longer used as game can possibly end
     HookConVarChange(bRespawnsResetAfterObjective, CvarChange);
     HookConVarChange(bIndividualLives, CvarChange);
     //player hunt
@@ -193,13 +193,14 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     return Plugin_Handled;
 }
 
+//Called via timer
 public Action:PrintStatusAllTimer(Handle:timer, any:client)
 {
     PrintStatusAll();
     return Plugin_Handled;
 }
 
-//Called via timer
+//Called manually or called by timer via PrintStatusAllTimer
 public PrintStatusAll()
 {
     decl String:textToPrint[64];
@@ -240,6 +241,27 @@ public Action:PrintPlayerStatus(Handle:timer, any:client)
     PrintHintText(client, textToPrint);
 }
 
+public RespawnPlayer(any:client)
+{
+    if(IsClientConnected(client))   //make sure they're still in-game
+        SDKCall(g_hPlayerRespawn, client);    
+    if(IsPlayer(client))//Respawn Player
+    {
+        if(g_IndividualLives)
+        {
+            PrintToChatAll("Respawning %N, who has %d live(s) remaining",client, g_iRespawnCount[client]);
+            if(g_printEnabled && !g_printBotCount)
+                CreateTimer(1.0,PrintPlayerStatus,client,TIMER_FLAG_NO_MAPCHANGE);           
+        }
+        else
+        {
+            PrintToChatAll("Respawning %N, Teamlives Remaining: %d",client, g_iRespawnTeamCount); 
+            if(g_printEnabled && !g_printBotCount)
+                CreateTimer(1.0,PrintPlayerStatus,client,TIMER_FLAG_NO_MAPCHANGE);           
+        }
+    }
+    return;
+}
 //Called via timer
 public Action:RespawnPlayer2(Handle:timer, any:client)
 {
@@ -307,7 +329,8 @@ public CvarChangePrintInterval(Handle:cvar, const String:oldvalue[], const Strin
 
 public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
 {
-    delete statusTimer;
+    if(statusTimer != INVALID_HANDLE)
+        delete statusTimer;
     return Plugin_Handled;
 }
 
@@ -344,7 +367,7 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
     //if hunt game mode then leave respawn behavior to dan_survival_hunt_mod_v2.sp
     if(g_isHunt) return Plugin_Handled;
 
-    g_playerDelay = GetConVarInt(iRespawnDelay);
+    g_playerDelay = GetConVarInt(iRespawnDelay); //No longer used as game can possibly end
     g_printBotCount = GetConVarInt(bPrintBotCountEnabled);
     g_printEnabled = GetConVarInt(bPrintEnabled);
 
@@ -707,32 +730,11 @@ public Action:Command_Respawn_Settings(int client, int args)
     SetConVarInt(iPlayerTeamCount_Hunt,StringToInt(arg1));
 
     GetCmdArg(2, arg2, sizeof(arg2));
-    SetConVarInt(iRespawnDelay,StringToInt(arg2));
+    SetConVarInt(iRespawnDelay,StringToInt(arg2)); //No longer used as game can possibly end
 
     SetConVarInt(bPlayerRespawnEnabled, 1);
 
     ReplyToCommand(client, "Player Respawn Count: %d, Delay: %d", GetConVarInt(iLifeBase), g_playerDelay);
 
     return Plugin_Handled;
-}
-
-
-//Called w/o timer
-RespawnPlayer(client)
-{
-    if(!IsPlayer(client))
-    {
-        return;
-    }
-    if(g_IndividualLives)
-    {
-        PrintToChatAll("Respawning %N, who has %d lives remaining",client, g_iRespawnCount[client]);
-    }
-    else
-    {
-        PrintToChatAll("Respawning %N, Lives Remaining: %d",client, g_iRespawnTeamCount); 
-    }
-    //Respawn Player
-    SDKCall(g_hPlayerRespawn, client);
-    return;
 }

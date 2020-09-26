@@ -16,6 +16,7 @@ public Plugin:myinfo = {
 
 #define TEAM_1_SEC	2
 #define TEAM_2_INS	3
+#define botdelay 0.0
 
 //for messaging for respawning
 new g_isHunt = 0; //is hunt gamemode to run this mod
@@ -234,7 +235,8 @@ public CvarChangeStatus(Handle:cvar, const String:oldvalue[], const String:newva
         delete statusTimer;
     g_statusDelay = GetConVarInt(statusDelay);
     // PrintToServer("StatusDelay changed to %d",g_statusDelay);
-    statusTimer = CreateTimer(float(g_statusDelay),PrintStatus,_,TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+    if(g_isHunt)
+        statusTimer = CreateTimer(float(g_statusDelay),PrintStatus,_,TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 }
 
 public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroadcast)
@@ -267,6 +269,9 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
 
 void huntSurvivalSetup(int printChat = 1)
 {
+    if(!g_hsEnabled || !g_isHunt)
+        return;
+
     g_botdeaths = 0;
     g_lifecount = GetConVarInt(respawnStart);
     grenadeEnabled = GetConVarInt(grenadeKillsEnabled);
@@ -323,6 +328,8 @@ void huntSurvivalSetup(int printChat = 1)
 //Called via timer
 public Action:PrintStatus(Handle:timer, any:client)
 {
+    if(!g_isHunt)
+        return Plugin_Handled;
     decl String:botsRemaining[64];
     if((g_mode == BR) && (g_remainingBotLives > 0))
         Format(botsRemaining,sizeof(botsRemaining),"Incoming: %d | ",g_remainingBotLives);
@@ -333,7 +340,7 @@ public Action:PrintStatus(Handle:timer, any:client)
     if(numDownPlayers > 0) //no respawns and dead players
     {
         if(IsPlayer(GetClientOfUserId(downPlayers[startOfList]))) //if single player dies and is last player it will display bot name :)
-            Format(textToPrint, sizeof(textToPrint),"%sNo respawns | %d/%d for %N",botsRemaining, g_lifecount,g_maxLives,g_botdeaths,g_count,GetClientOfUserId(downPlayers[startOfList]));
+            Format(textToPrint, sizeof(textToPrint),"%sNo respawns | %d/%d for %N",botsRemaining, g_botdeaths,g_count,GetClientOfUserId(downPlayers[startOfList]));
     }
     else if(g_lifecount == g_maxLives) //no dead players and max respawns
         Format(textToPrint, sizeof(textToPrint),"%sRespawns: %d/%d | Maxed",botsRemaining, g_lifecount,g_maxLives);
@@ -349,6 +356,8 @@ public Action:PrintStatus(Handle:timer, any:client)
 
 void botRespawnSetup(int printChat = 1)
 {
+    if(!g_brEnabled || !g_isHunt)
+        return;
     g_botdeaths = 0;    //bots kills incremented till reward
     g_lifecount = GetConVarInt(br_respawnStart); //team lives
     g_inc = GetConVarInt(br_respawnInc); //reward amount
@@ -404,7 +413,7 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     new clientId = GetEventInt(event, "userid");
     new client = GetClientOfUserId(clientId);
 
-    if(!g_isHunt | (g_mode == OFF))
+    if(!g_isHunt || (g_mode == OFF))
         return Plugin_Handled;
 
     if(!IsPlayer(client) && (GetClientTeam(client) == TEAM_2_INS)) //if bot died and respawn enabled
@@ -444,14 +453,14 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
                 GetEventString(event,"weapon",weapon, sizeof(weapon));
                 new wasGrenade = 0;
                 // if(StrEqual(weapon,"grenade_anm14") | StrEqual(weapon,"grenade_molotov") | StrEqual(weapon,"grenade_m203_he") | StrEqual(weapon,"grenade_m203_incid") | StrEqual(weapon,"grenade_m67") | StrEqual(weapon,"rocket_at4")| StrEqual(weapon,"C4")| StrEqual(weapon,"rocket_m72law")| StrEqual(weapon,"rocket_rpg7"))
-                if((StrContains(weapon,"grenade") != -1) | (StrContains(weapon,"rocket") != -1))
+                if((StrContains(weapon,"grenade") != -1) || (StrContains(weapon,"rocket") != -1))
                     wasGrenade = 1;
                 // PrintToServer("Grenade? %d, Weapon: %s",wasGrenade,weapon);
                 // PrintToChatAll("Grenade? %d, Weapon: %s",wasGrenade,weapon);
 
                 //Don't respawn bots kileed with explosives
-                if(!grenadeEnabled | !wasGrenade)
-                    CreateTimer(float(0),RespawnPlayer2,client); //respawn bot
+                if(!grenadeEnabled || !wasGrenade)
+                    CreateTimer(botdelay,RespawnPlayer2,client); //respawn bot
             }
         }
         else if (g_brEnabled) //finite respawn count
@@ -459,7 +468,7 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
             if(g_remainingBotLives > 0)
             {
                 g_remainingBotLives--;
-                CreateTimer(float(0),RespawnPlayer2,client); //respawn bot
+                CreateTimer(botdelay,RespawnPlayer2,client); //respawn bot
                 if(g_remainingBotLives == 0)
                     PrintToChatAll("Inforcements Depleted!");
                 //PrintToChatAll("%d reinforcements remaining", g_remainingBotLives);
@@ -484,6 +493,7 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
             //     else
             //         PrintToChatAll("%N died, %d respawn remaining. %d kills needed",client, g_lifecount,killsNeeded);
             // }
+
             CreateTimer(float(0),RespawnPlayer2,client);
         }
         else //otherwise add to dead list
@@ -502,7 +512,7 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
 
 public IsPlayer(client)
 {
-    if(IsClientConnected(client) && !IsFakeClient(client) && (GetClientTeam(client) == TEAM_1_SEC)) 
+    if(IsClientConnected(client) && !IsFakeClient(client)) 
     {
         return true;
     }
@@ -530,6 +540,7 @@ public RespawnTeam()
         new client = GetClientOfUserId(clientId);        
         
         CreateTimer(float(0),RespawnPlayer2,client);
+
         g_lifecount -= 1;
         numDownPlayers--;
         startOfList++;
@@ -557,6 +568,7 @@ public RespawnDeadPlayers()
             new clientId = downPlayers[startOfList];
             new client = GetClientOfUserId(clientId);
             CreateTimer(float(0), RespawnPlayer2, client);
+
             PrintToChatAll("Respawned %N",client);
             startOfList++;
             if(startOfList > 8) //cycle 1-8
@@ -574,12 +586,28 @@ public RespawnDeadPlayers()
 //if objective is destroyed just respawn dead teammates and stop respawning bots
 public Action:Event_ObjectDestroyed(Handle:event, const String:name[], bool:dontBroadcast)
 {
-    if(!g_isHunt | (g_mode == OFF))
+    if(!g_isHunt || (g_mode == OFF))
         return Plugin_Handled;
-    cacheDestroyed = 1; //stops bots from spawning in hs mode
-    g_lifecount += numDownPlayers; //increment lifecount only by the number of dead players
-    RespawnTeam(); //Respawn whole team even if lifecount shouldn't allow it
-    PrintToChatAll("Finish off the Insurgents!");
+    new type = GetEventInt(event, "type");
+    new CACHE = 0; //Some maps have explosive cars that typically have type 2 and cp -1
+    if(type == CACHE)
+    {
+        cacheDestroyed = 1; //stops bots from spawning in hs mode
+        g_lifecount += numDownPlayers; //increment lifecount only by the number of dead players
+        RespawnTeam(); //Respawn whole team even if lifecount shouldn't allow it
+        PrintToChatAll("Finish off the Insurgents!");
+    }
+    //
+    //"team" "byte"
+    //"attacker" "byte"
+    //"cp" "short"
+    //"type" "byte"
+    // new team = GetEventInt(event, "team");
+    // new attacker = GetEventInt(event, "attacker");
+    // new attackerteam = GetEventInt(event, "attackerteam");
+    // new cp = GetEventInt(event, "cp");
+    // PrintToServer("Event_ObjectDestroyed: team %d attacker %d attacker_userid %d cp %d index %d type %d weaponid %d assister %d assister_userid %d attackerteam %d",team,attacker,attacker_userid,cp,index,type,weaponid,assister,assister_userid,attackerteam);
+    // PrintToChatAll("Event_ObjectDestroyed: team %d attacker %d attacker_userid %d cp %d index %d type %d weaponid %d assister %d assister_userid %d attackerteam %d",team,attacker,attacker_userid,cp,index,type,weaponid,assister,assister_userid,attackerteam);
     return Plugin_Handled;
 }
 

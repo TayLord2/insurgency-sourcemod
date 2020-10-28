@@ -16,7 +16,8 @@ Both options have a hintText that can be enabled for the screen that shows numbe
 
 1) Hunt-Survival
   Bots will endlessly respawn until the cache is blown at which point each kill is permanement. This typically requires less bots.
-  Explosive kills can be made to be permanent kills to allow bots to be whittled down
+  Explosive kills can be made to be permanent kills to allow bots to be whittled down.
+  There is a a custom theater I uploaded (All Weapons Coop (Lower Weights)) to reduce the weight of explosives to allow for an rpg and rifle to be carried for this purpose.
   Team starts with a set number of shared respawns (hs_start)
   Team lifecount gets incremented by hs_reward every x (hs_killcount) kills. 
   Team cannot have more than hs_maxLives team lives total

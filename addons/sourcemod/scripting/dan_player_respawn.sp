@@ -205,29 +205,37 @@ public PrintStatusAll()
 {
     decl String:textToPrint[64];
     new bc = GetTeamInsCount(); //botcount
-
-    if(!g_IndividualLives) //shared lifecount
+    if(g_PlayerRespawnIsEnabled)
     {
-        if(g_printBotCount) 
-            Format(textToPrint, sizeof(textToPrint),"Ins: %d | Lives: %d",bc,g_iRespawnTeamCount);
-        else
-            Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnTeamCount);
-        
-        PrintHintTextToAll(textToPrint);
-    }
-    else //print for each player seperately
-    {
-        for(int c = 1; c < GetMaxClients(); c++)
+        if(!g_IndividualLives) //shared lifecount
         {
-            if(!IsPlayer(c))
-                continue;
             if(g_printBotCount) 
-                Format(textToPrint, sizeof(textToPrint),"Ins: %d | Lives: %d",bc,g_iRespawnCount[c]);
+                Format(textToPrint, sizeof(textToPrint),"Ins: %d | Lives: %d",bc,g_iRespawnTeamCount);
             else
-                Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnCount[c]);
+                Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnTeamCount);
             
-            PrintHintText(c, textToPrint);
+            PrintHintTextToAll(textToPrint);
         }
+        else //print for each player seperately
+        {
+            for(int c = 1; c < GetMaxClients(); c++)
+            {
+                if(!IsPlayer(c))
+                    continue;
+                if(g_printBotCount) 
+                    Format(textToPrint, sizeof(textToPrint),"Ins: %d | Lives: %d",bc,g_iRespawnCount[c]);
+                else
+                    Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnCount[c]);
+                
+                if(IsClientInGame(c))
+                    PrintHintText(c, textToPrint);
+            }
+        }
+    }
+    else if (g_printBotCount) //if player respawns not enabled and bot count enabled, just print bot counts
+    {
+        Format(textToPrint, sizeof(textToPrint),"Ins: %d",bc);
+        PrintHintTextToAll(textToPrint);
     }
 }
 
@@ -238,7 +246,8 @@ public Action:PrintPlayerStatus(Handle:timer, any:client)
         Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnTeamCount);
      else
         Format(textToPrint, sizeof(textToPrint),"Lives: %d",g_iRespawnCount[client]);           
-    PrintHintText(client, textToPrint);
+    if(IsClientInGame(client))
+        PrintHintText(client, textToPrint);
 }
 
 public RespawnPlayer(any:client)

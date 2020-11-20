@@ -14,12 +14,14 @@ new Handle:cvarSmokeLimit = INVALID_HANDLE;
 new Handle:cvarFireLimit = INVALID_HANDLE;
 new Handle:cvarPrintLimit = INVALID_HANDLE;
 new Handle:cvarFireSupportLimit = INVALID_HANDLE;
+new Handle:cvarHeavyFireLimit = INVALID_HANDLE;
 
 public OnPluginStart() 
 {
     cvarEnabled = CreateConVar("grenade_limits_enabled", "1", "sets whether limit grenades is enabled");
     cvarSmokeLimit = CreateConVar("smoke_limit", "1", "amount of smoke that player can bring at a time");
     cvarFireLimit = CreateConVar("fire_limit", "1", "amount of fire grenades that player can bring at a time");
+    cvarHeavyFireLimit = CreateConVar("heavy_fire_limit", "4", "amount of heavy weaponry that player can bring at a time");
     cvarPrintLimit = CreateConVar("print_limit", "0", "enable chat message to players when swapping to limited grenade");
     cvarFireSupportLimit = CreateConVar("m79_smoke_limit", "2", "amount of smoke that player can bring to call firesupport with");
 
@@ -38,17 +40,16 @@ public Action:WeaponSwitchHook(client, weapon)
 {
 	if(GetConVarBool(cvarEnabled))
 	{
-		//Smoke
-		int nSmokeAmount = GetConVarInt(cvarSmokeLimit);
 		decl String:sWeaponName[64]; 
-		GetEntityClassname(weapon, sWeaponName, sizeof(sWeaponName)); 
-
+		GetEntityClassname(weapon, sWeaponName, sizeof(sWeaponName));
 		new PrimaryAmmoType = GetEntProp(weapon, Prop_Data, "m_iPrimaryAmmoType");
-
-		//PrintToChatAll("Weapon is: %s", sWeaponName);
+		
+		//Smoke		
 		if(StrEqual(sWeaponName, "weapon_m18") && (PrimaryAmmoType != -1))
 		{
+			int nSmokeAmount = GetConVarInt(cvarSmokeLimit);
 			new CurrentAmmo = GetEntProp(client, Prop_Send, "m_iAmmo", _, PrimaryAmmoType);
+
 			if(CurrentAmmo > nSmokeAmount)
 			{
 				if(GetConVarBool(cvarPrintLimit))
@@ -58,37 +59,45 @@ public Action:WeaponSwitchHook(client, weapon)
 		}
 
 		//firesupport
-		int nSupportAmount = GetConVarInt(cvarFireSupportLimit);
-		GetEntityClassname(weapon, sWeaponName, sizeof(sWeaponName)); 
-
-		PrimaryAmmoType = GetEntProp(weapon, Prop_Data, "m_iPrimaryAmmoType");
-
-		//PrintToChatAll("Weapon is: %s", sWeaponName);
-		if(StrEqual(sWeaponName, "weapon_m79_smoke") && (PrimaryAmmoType != -1))
+		else if(StrEqual(sWeaponName, "weapon_m79_smoke") && (PrimaryAmmoType != -1))
 		{
+			int nSupportAmount = GetConVarInt(cvarFireSupportLimit);
 			new CurrentAmmo = GetEntProp(client, Prop_Send, "m_iAmmo", _, PrimaryAmmoType);
-			if(CurrentAmmo > nSmokeAmount)
+
+			if(CurrentAmmo > nSupportAmount)
 			{
 				if(GetConVarBool(cvarPrintLimit))
-					PrintToChat(client, "You can't have more than %i smoke. Use it wisely!", nSupportAmount);
+					PrintToChat(client, "You can't have more than %i fire support. Use it wisely!", nSupportAmount);
 				SetEntProp(client, Prop_Send, "m_iAmmo", nSupportAmount, _, PrimaryAmmoType);
 			}
 		}
 
 		//Fire
-		int nFireAmount = GetConVarInt(cvarFireLimit);
-		GetEntityClassname(weapon, sWeaponName, sizeof(sWeaponName)); 
-
-		PrimaryAmmoType = GetEntProp(weapon, Prop_Data, "m_iPrimaryAmmoType");
-
-		if( (StrEqual(sWeaponName, "weapon_anm14") || (StrEqual(sWeaponName, "weapon_molotov")) ) && (PrimaryAmmoType != -1))
+		else if( (StrEqual(sWeaponName, "weapon_anm14") || (StrEqual(sWeaponName, "weapon_molotov")) ) && (PrimaryAmmoType != -1))
 		{
+			int nFireAmount = GetConVarInt(cvarFireLimit);
 			new CurrentAmmo = GetEntProp(client, Prop_Send, "m_iAmmo", _, PrimaryAmmoType);
+
 			if(CurrentAmmo > nFireAmount)
 			{
 				if(GetConVarBool(cvarPrintLimit))
 					PrintToChat(client, "You can't have more than %i fire grenade. Use it wisely!", nFireAmount);
 				SetEntProp(client, Prop_Send, "m_iAmmo", nFireAmount, _, PrimaryAmmoType);
+			}
+		}
+		//Heavy Fire
+		else if( (StrEqual(sWeaponName, "weapon_c4_clicker") || StrEqual(sWeaponName, "weapon_c4_ied") || StrEqual(sWeaponName, "weapon_geballteladung") || StrEqual(sWeaponName, "weapon_hafthohlladung") || StrEqual(sWeaponName, "weapon_m79") || StrEqual(sWeaponName, "weapon_m79_napalm") ) && (PrimaryAmmoType != -1))
+		{
+			//PrintToChatAll("Weapon is: %s", sWeaponName);
+
+			int nHeavyFireAmount = GetConVarInt(cvarHeavyFireLimit);
+			new CurrentAmmo = GetEntProp(client, Prop_Send, "m_iAmmo", _, PrimaryAmmoType);
+
+			if(CurrentAmmo > nHeavyFireAmount)
+			{
+				if(GetConVarBool(cvarPrintLimit))
+					PrintToChat(client, "You can't have more than %i heavy grenade. Use it wisely!", nHeavyFireAmount);
+				SetEntProp(client, Prop_Send, "m_iAmmo", nHeavyFireAmount, _, PrimaryAmmoType);
 			}
 		}
 	}

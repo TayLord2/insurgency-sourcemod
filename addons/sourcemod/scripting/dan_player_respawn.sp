@@ -51,6 +51,7 @@ new Handle:iTeamBase_Hunt_count6 = INVALID_HANDLE;
 new Handle:bPrintEnabled = INVALID_HANDLE;
 new Handle:bPrintBotCountEnabled = INVALID_HANDLE;
 new Handle:iPrintInterval = INVALID_HANDLE;
+new Handle:iPrintRefresh = INVALID_HANDLE;
 
 //global vars
 //These will both be set and decremented from cvar iLifeBase
@@ -103,6 +104,7 @@ public void OnPluginStart()
     //Print bot count to screen
     bPrintEnabled = CreateConVar("print_enabled", "1", "Enable lifecount/bot count printing");
     bPrintBotCountEnabled = CreateConVar("print_bot_count_enabled", "0", "Enable bot count printing");
+    iPrintRefresh = CreateConVar("print_refresh_rate", "1.0", "How many seconds to wait before refreshing hint text");
     //unused after replacing with hintText
     iPrintInterval = CreateConVar("print_bot_interval", "5", "Print bot count every x kills.");
     
@@ -126,8 +128,8 @@ public void OnPluginStart()
     //printing
     HookConVarChange(bPrintBotCountEnabled,CvarChangePrintEnable);
     HookConVarChange(bPrintEnabled,CvarChangePrintEnable);
-    HookConVarChange(iPrintInterval,CvarChangePrintInterval);
-
+    HookConVarChange(iPrintInterval,CvarChangePrintEnable);
+    HookConVarChange(iPrintRefresh,CvarChangePrintInterval);
     //Startup respawn
     // Next 14 lines of text are taken from Andersso's DoDs respawn plugin. Thanks :)
     g_hGameConfig = LoadGameConfigFile("plugin.respawn");
@@ -319,6 +321,7 @@ public CvarChangePrintEnable(Handle:cvar, const String:oldvalue[], const String:
 
     g_printBotCount = GetConVarInt(bPrintBotCountEnabled);
     g_printEnabled = GetConVarInt(bPrintEnabled);
+    g_statusDelay = GetConVarInt(iPrintRefresh);
     if(g_printEnabled)
         PrintToChatAll("Printing turned on");
     else
@@ -430,7 +433,7 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
         }
     }
     
-    g_statusDelay = GetConVarInt(FindConVar("statusDelay")); //grab fron dan survival hunt mod
+    g_statusDelay = GetConVarInt(iPrintRefresh); //grab refresh rate
     if(g_printEnabled && g_printBotCount) //if just printing lives then only print on player death
         statusTimer = CreateTimer(float(g_statusDelay),PrintStatusAllTimer,_,TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
     else if (g_printEnabled && !g_printBotCount) //just print lifecount once on start

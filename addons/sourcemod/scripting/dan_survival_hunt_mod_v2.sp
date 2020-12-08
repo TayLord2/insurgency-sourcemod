@@ -87,6 +87,13 @@ new Handle:grenadeKillsEnabled = INVALID_HANDLE;
 new Handle:statusDelay = INVALID_HANDLE;
 new Handle:statusTimer = INVALID_HANDLE;
 
+//Timeout bot killer
+new Handle:EndRoundEnabled = INVALID_HANDLE;
+new Handle:EndRoundBotCount = INVALID_HANDLE;
+new Handle:EndRoundTimerLength = INVALID_HANDLE;
+new Handle:EndRoundTimer = INVALID_HANDLE;
+new g_EndRound = 0; //To stop messages from printing for bot deaths from endround
+
 //respawn plugin handles
 new Handle:g_hPlayerRespawn;
 new Handle:g_hGameConfig;
@@ -130,6 +137,12 @@ public void OnPluginStart()
     
     //print
     statusDelay = CreateConVar("statusdelay","4","Delay between printing status updates");
+
+    //End Round Bot Slayer
+    //These initiate end of round if less then x bots are alive, cache is blown, and x time has expired
+    EndRoundBotCount = CreateConVar("end_round_bot_count","5","Initiate end game timer if cache is blown and x bots are still alive");
+    EndRoundTimerLength = CreateConVar("end_round_timer","3","End game after x minutes and no more bots are killed");
+    EndRoundEnabled = CreateConVar("end_round_enabled", "1", "Enable end round triggering via botcount and timer");
 
     //Event hooks
     HookEvent("round_start", Event_RoundStart, EventHookMode_Pre);
@@ -246,7 +259,7 @@ public Action:Event_RoundStart(Handle:event, const String:name[], bool:dontBroad
     g_isHunt = 0;
     if (StrEqual(sGameMode,"hunt"))
         g_isHunt = 1;    
-    
+    g_EndRound = 0; 
     g_hsEnabled = 0;
     g_brEnabled = 0;
     g_mode = GetConVarInt(hunt_mode);
@@ -323,6 +336,27 @@ void huntSurvivalSetup(int printChat = 1)
         PrintToChatAll("Team starts with %d shared respawns",GetConVarInt(respawnStart));    
     }
     statusTimer = CreateTimer(float(g_statusDelay),PrintStatus,_,TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
+}
+
+//End round timer
+//This is called when cache is blown and <x bots are still alive
+//This ends round
+public Action:EndRound(Handle:timer)
+{
+    g_EndRound = 1;
+    EndRoundTimer = INVALID_HANDLE;
+    if(GetConVarInt(EndRoundEnabled))
+    {
+	    //PrintToChatAll("All bots will now be killed");
+        for (int i = 1; i <= MaxClients; i++)
+        {
+            if (IsClientInGame(i) && IsFakeClient(i) && IsPlayerAlive(i))
+            {
+                ForcePlayerSuicide(i);
+            }
+        }
+    }
+    return Plugin_Handled;
 }
 
 //Called via timer
@@ -418,19 +452,25 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
 
     if(!IsPlayer(client) && (GetClientTeam(client) == TEAM_2_INS)) //if bot died and respawn enabled
     {
+        //Trigger end game if enabled and cache is blown
+        if(GetConVarInt(EndRoundEnabled) && cacheDestroyed && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount)-1)) )
+        {
+            if(EndRoundTimer != INVALID_HANDLE) //create first timer
+            {
+                KillTimer(EndRoundTimer);
+                EndRoundTimer = INVALID_HANDLE;
+                EndRoundTimer = CreateTimer(float(GetConVarInt(EndRoundTimerLength)*60),EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            }
+            else //if timer already started then start it over as more bots die
+            {
+                if(!g_EndRound)
+                    PrintToChatAll("Victory declared in %d minutes",GetConVarInt(EndRoundTimerLength));
+                EndRoundTimer = CreateTimer(float(GetConVarInt(EndRoundTimerLength)*60),EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            }
+        }
         //only count bot kills if respawns aren't maxed out
         if(g_lifecount != g_maxLives) g_botdeaths++;
-        
-        // new killsNeeded = g_count - g_botdeaths;
-        // if(numDownPlayers > 0) //If players are down then print every kill
-        // {
-        //     PrintToChatAll("Get %d more kill(s) to respawn %N", killsNeeded, GetClientOfUserId(downPlayers[startOfList]));
-        // }
-        // else//Print a message every five kills letting players know how close they are to regaining lives
-        // {
-        //     if((killsNeeded % 5 == 0) && killsNeeded > 0) 
-        //         PrintToChatAll("Get %d more kill(s) for respawn", killsNeeded);
-        // }
+
         if(g_botdeaths >= g_count) //if deaths reached
         {
             g_botdeaths -= g_count; //start count over
@@ -439,11 +479,8 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
             RespawnDeadPlayers(); //respawn as many as lifecount allows
             if(g_lifecount >= g_maxLives)
             {
-                // PrintToChatAll("Max team spawns reached: %d", g_maxLives);
                 g_lifecount = g_maxLives;
             }
-            // else
-            //     PrintToChatAll("%d team spawn rewarded. Total respawns: %d/%d", g_inc, g_lifecount,g_maxLives);
         }
         if(g_hsEnabled) //hunt-survival mode. endless respawn till cache blown
         {
@@ -455,8 +492,6 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
                 // if(StrEqual(weapon,"grenade_anm14") | StrEqual(weapon,"grenade_molotov") | StrEqual(weapon,"grenade_m203_he") | StrEqual(weapon,"grenade_m203_incid") | StrEqual(weapon,"grenade_m67") | StrEqual(weapon,"rocket_at4")| StrEqual(weapon,"C4")| StrEqual(weapon,"rocket_m72law")| StrEqual(weapon,"rocket_rpg7"))
                 if((StrContains(weapon,"grenade") != -1) || (StrContains(weapon,"rocket") != -1))
                     wasGrenade = 1;
-                // PrintToServer("Grenade? %d, Weapon: %s",wasGrenade,weapon);
-                // PrintToChatAll("Grenade? %d, Weapon: %s",wasGrenade,weapon);
 
                 //Don't respawn bots kileed with explosives
                 if(!grenadeEnabled || !wasGrenade)
@@ -619,6 +654,8 @@ public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadca
     //    SetConVarInt(FindConVar("enable_player_respawn"),1);
         if(statusTimer != INVALID_HANDLE)
             delete statusTimer;
+        if(EndRoundTimer != INVALID_HANDLE)
+            delete EndRoundTimer;
     }
     return Plugin_Handled;
 }
@@ -637,4 +674,17 @@ public GetTeamSecCount()
         }
     }   
     return clients;
+}
+
+//Get current bot count
+public GetTeamInsCount()
+{
+	new bots = 0;
+	for( new i = 1; i <= GetMaxClients(); i++ ) {
+		if (IsClientConnected(i) && IsClientInGame(i) && IsPlayerAlive(i) && IsFakeClient(i))
+		{
+            bots++;
+		}
+	}
+	return bots;
 }

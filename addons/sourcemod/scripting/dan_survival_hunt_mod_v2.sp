@@ -141,7 +141,7 @@ public void OnPluginStart()
     //End Round Bot Slayer
     //These initiate end of round if less then x bots are alive, cache is blown, and x time has expired
     EndRoundBotCount = CreateConVar("end_round_bot_count","5","Initiate end game timer if cache is blown and x bots are still alive");
-    EndRoundTimerLength = CreateConVar("end_round_timer","3","End game after x minutes and no more bots are killed");
+    EndRoundTimerLength = CreateConVar("end_round_timer","1.5","End game after x minutes and no more bots are killed");
     EndRoundEnabled = CreateConVar("end_round_enabled", "1", "Enable end round triggering via botcount and timer");
 
     //Event hooks
@@ -453,19 +453,19 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     if(!IsPlayer(client) && (GetClientTeam(client) == TEAM_2_INS)) //if bot died and respawn enabled
     {
         //Trigger end game if enabled and cache is blown
-        if(GetConVarInt(EndRoundEnabled) && cacheDestroyed && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount)-1)) )
+        if(GetConVarInt(EndRoundEnabled) && cacheDestroyed && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount)+1)) )
         {
             if(EndRoundTimer != INVALID_HANDLE) //create first timer
             {
                 KillTimer(EndRoundTimer);
                 EndRoundTimer = INVALID_HANDLE;
-                EndRoundTimer = CreateTimer(float(GetConVarInt(EndRoundTimerLength)*60),EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
             }
             else //if timer already started then start it over as more bots die
             {
                 if(!g_EndRound)
-                    PrintToChatAll("Victory declared in %d minutes",GetConVarInt(EndRoundTimerLength));
-                EndRoundTimer = CreateTimer(float(GetConVarInt(EndRoundTimerLength)*60),EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+                    PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
+                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
             }
         }
         //only count bot kills if respawns aren't maxed out

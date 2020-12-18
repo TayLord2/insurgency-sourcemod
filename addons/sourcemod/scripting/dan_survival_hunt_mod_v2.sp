@@ -631,6 +631,24 @@ public Action:Event_ObjectDestroyed(Handle:event, const String:name[], bool:dont
         g_lifecount += numDownPlayers; //increment lifecount only by the number of dead players
         RespawnTeam(); //Respawn whole team even if lifecount shouldn't allow it
         PrintToChatAll("Finish off the Insurgents!");
+
+         //Trigger end game if enabled and cache is blown
+        if(GetConVarInt(EndRoundEnabled) && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount))) )
+        {
+            if(EndRoundTimer != INVALID_HANDLE) //create first timer
+            {
+                KillTimer(EndRoundTimer);
+                EndRoundTimer = INVALID_HANDLE;
+                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            }
+            else //if timer already started then start it over as more bots die
+            {
+                if(!g_EndRound)
+                    PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
+                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            }
+        }
+
     }
     //
     //"team" "byte"

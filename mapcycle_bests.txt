@@ -17,6 +17,17 @@ dusty_anguish_coopvfix checkpoint
 fairgrounds checkpoint
 depot_ws_1 checkpoint
 iron_express_b2 checkpoint
+badlands_b2 checkpoint
+almaden_coop_v1_1 checkpoint
+cs_downtown_coop checkpoint
+de_aqueduct_d checkpoint
+cutoff4-9 checkpoint 
+kunar checkpoint
+block_party_coop_ws checkpoint
+ins_italy_coop checkpoint
+badel_coop_2020 checkpoint
+ins_prison_2020_new checkpoint
+
 buhriz_coop checkpoint
 district_coop checkpoint
 contact_coop checkpoint
@@ -29,40 +40,38 @@ siege_coop checkpoint
 sinjar_coop checkpoint
 tell_coop checkpoint
 verticality_coop checkpoint
-badlands_b2 checkpoint
-almaden_coop_v1_1 checkpoint
-healthcenter_coop_fixbysakey checkpoint
-cs_downtown_coop checkpoint
-de_aqueduct_d checkpoint
-ins_bridgeatremagen_coop checkpoint
 
-ins_bridgeatremagen_coop hunt
+jack_hammer_coopvfix hunt
+osama_b3_checkpoint hunt
+cutoff4-9 hunt
 dusty_anguish_coopvfix hunt
 cobblestone hunt
 shellshock hunt
-fairgrounds hunt
 baghdad_b5 hunt
+convoy_coopv1 hunt
+clean_sweep_coop_ws hunt
 almaden_coop_v1_1 hunt
-amber_spirits_coop hunt
+tet_b1 hunt
+dust_new hunt
+congress hunt
+crossbow hunt
+frequency hunt
+estates_b4 hunt
+block_party_coop_ws hunt
+iron_express_b2 hunt
+badlands_b2 hunt
+
 buhriz hunt
 contact hunt
 district hunt
 drycanal hunt
-embassy hunt
 kandagal hunt
-market hunt
-ministry hunt
 siege hunt
+peak hunt
 sinjar hunt
 station hunt
 verticality hunt
-tet_b1 hunt
-dust_new hunt
-congress hunt
-hideout_b2 hunt
-crossbow hunt
-frequency hunt
-estates_b4 hunt
+peak hunt
 
 contact conquer
 drycanal conquer
@@ -78,3 +87,11 @@ tell conquer
 verticality conquer
 tet_b1 conquer
 crossbow conquer
+
+//hesitation_coop_ins checkpoint 
+//karkand_coop_p1_redux_v1_7 checkpoint
+//embassy hunt
+//hesitation_coop_ins hunt
+//karkand_coop_p1_redux_v1_7 hunt
+//market hunt
+//hideout_b2 hunt

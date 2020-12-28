@@ -105,34 +105,34 @@ public void OnPluginStart()
     hunt_mode = CreateConVar("hunt_mod_enabled", "1", "1 - Enable Hunt-survival 2- Enable Bot-respawn - 0 disable");
     //hunt-survival cvars
     killCount = CreateConVar("hs_killcount", "0", "How many bots must be killed before granting respawns. If 0 then set by number of players");
-    killCount_1 = CreateConVar("hs_killcount_1", "5", "How many bots must be killed before granting respawns for 1 player");
-    killCount_2 = CreateConVar("hs_killcount_2", "8", "How many bots must be killed before granting respawns for 2 players");
-    killCount_3 = CreateConVar("hs_killcount_3", "10", "How many bots must be killed before granting respawns for 3 players");
+    killCount_1 = CreateConVar("hs_killcount_1", "8", "How many bots must be killed before granting respawns for 1 player");
+    killCount_2 = CreateConVar("hs_killcount_2", "10", "How many bots must be killed before granting respawns for 2 players");
+    killCount_3 = CreateConVar("hs_killcount_3", "15", "How many bots must be killed before granting respawns for 3 players");
     killCount_4 = CreateConVar("hs_killcount_4", "15", "How many bots must be killed before granting respawns for 4 players");
     respawnInc = CreateConVar("hs_reward","1","How many respawns to give upon reaching killcount");
     respawnStart = CreateConVar("hs_start","2","How many respawns team starts with");
     botcount = CreateConVar("hs_botcount","0","How many bots to max out at? If set to 0 then will set by the number of players");
-    botcount_1 = CreateConVar("hs_botcount_1","25","How many bots to have for 1 player");
-    botcount_2 = CreateConVar("hs_botcount_2","28","How many bots to have for 2 player");
-    botcount_3 = CreateConVar("hs_botcount_3","32","How many bots to have for 3 player");
-    botcount_4 = CreateConVar("hs_botcount_4","45","How many bots to have for 4 player");
+    botcount_1 = CreateConVar("hs_botcount_1","30","How many bots to have for 1 player");
+    botcount_2 = CreateConVar("hs_botcount_2","34","How many bots to have for 2 player");
+    botcount_3 = CreateConVar("hs_botcount_3","38","How many bots to have for 3 player");
+    botcount_4 = CreateConVar("hs_botcount_4","38","How many bots to have for 4 player");
     maxLives = CreateConVar("hs_maxlives","2","Maximum number of lives that can be reached per player");
     grenadeKillsEnabled = CreateConVar("hs_grenadekills","1","Does explosive damage kill permanently?");
 
     //bot-respawn cvars
     br_killCount = CreateConVar("br_killcount", "0", "How many bots must be killed before granting respawns. If 0 then set by number of players");
-    br_killCount_1 = CreateConVar("br_killcount_1", "5", "How many bots must be killed before granting respawns for 1 player");
-    br_killCount_2 = CreateConVar("br_killcount_2", "8", "How many bots must be killed before granting respawns for 2 players");
-    br_killCount_3 = CreateConVar("br_killcount_3", "10", "How many bots must be killed before granting respawns for 3 players");
+    br_killCount_1 = CreateConVar("br_killcount_1", "8", "How many bots must be killed before granting respawns for 1 player");
+    br_killCount_2 = CreateConVar("br_killcount_2", "12", "How many bots must be killed before granting respawns for 2 players");
+    br_killCount_3 = CreateConVar("br_killcount_3", "15", "How many bots must be killed before granting respawns for 3 players");
     br_killCount_4 = CreateConVar("br_killcount_4", "15", "How many bots must be killed before granting respawns for 4 players");
     br_respawnInc = CreateConVar("br_reward","1","How many respawns to give upon reaching killcount");
     br_respawnStart = CreateConVar("br_start","2","How many respawns team starts with");
     br_botcount_base = CreateConVar("br_botcount_base","44","Number bots to be on the map that will respawn when killed");
     br_botcount = CreateConVar("br_botcount","0","How many bots to respawn? If set to 0 then will set by the number of players");
-    br_botcount_1 = CreateConVar("br_botcount_1","40","How many bots to respawn for 1 player");
-    br_botcount_2 = CreateConVar("br_botcount_2","50","How many bots to respawn for 2 player");
-    br_botcount_3 = CreateConVar("br_botcount_3","60","How many bots to respawn for 3 player");
-    br_botcount_4 = CreateConVar("br_botcount_4","70","How many bots to respawn for 4 player");
+    br_botcount_1 = CreateConVar("br_botcount_1","30","How many bots to respawn for 1 player");
+    br_botcount_2 = CreateConVar("br_botcount_2","40","How many bots to respawn for 2 player");
+    br_botcount_3 = CreateConVar("br_botcount_3","50","How many bots to respawn for 3 player");
+    br_botcount_4 = CreateConVar("br_botcount_4","60","How many bots to respawn for 4 player");
     br_maxLives = CreateConVar("br_maxlives","2","Maximum number of lives that can be reached per player");
     
     //print
@@ -141,7 +141,7 @@ public void OnPluginStart()
     //End Round Bot Slayer
     //These initiate end of round if less then x bots are alive, cache is blown, and x time has expired
     EndRoundBotCount = CreateConVar("end_round_bot_count","5","Initiate end game timer if cache is blown and x bots are still alive");
-    EndRoundTimerLength = CreateConVar("end_round_timer","1.5","End game after x minutes and no more bots are killed");
+    EndRoundTimerLength = CreateConVar("end_round_timer","1.2","End game after x minutes and no more bots are killed");
     EndRoundEnabled = CreateConVar("end_round_enabled", "1", "Enable end round triggering via botcount and timer");
 
     //Event hooks

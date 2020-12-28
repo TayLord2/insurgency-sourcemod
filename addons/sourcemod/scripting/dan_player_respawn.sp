@@ -341,6 +341,8 @@ public CvarChangePrintInterval(Handle:cvar, const String:oldvalue[], const Strin
 
 public Action:Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
 {
+    if(g_isHunt) //If hunt then timer was never created
+        return Plugin_Handled;
     if(statusTimer != INVALID_HANDLE)
     {
         CloseHandle(statusTimer);

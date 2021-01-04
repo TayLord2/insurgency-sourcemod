@@ -16,7 +16,7 @@ tet_b1 hunt //mm 10!
 crossbow hunt //mm 10! snow start trains
 hideout_b2 hunt //mm 10!
 badlands_b2 hunt //mm big map start run
-frequency hunt //mm hard crazy stairs for days
+frequency_coop hunt //mm hard crazy stairs for days
 estates_b4 hunt //mm big map lot of running
 panama_canal_b2 hunt
 congress hunt //mm
@@ -29,4 +29,10 @@ fairgrounds hunt
 baghdad_b5 hunt
 almaden_coop_v1_1 hunt
 dusty_anguish_coopvfix hunt
-amber_spirits_coop hunt
+iron_express_b2 hunt
+depot_ws_1 hunt
+karkand_coop_p1_redux_v1_7 hunt
+ins_italy_coop hunt
+osama_b3_checkpoint hunt
+hesitation_coop_ins hunt
+cutoff4-9 hunt

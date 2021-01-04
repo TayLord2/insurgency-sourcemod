@@ -1,7 +1,5 @@
 1387290860 //The armory with all modes - hunt
 885304038 //The armory expanded for all modes - survival
-//676107760 //all weapon & attachements for all coops ttr_hunt, ttr_survival, etc.
-2216672715 //nw_gamemode all weapons with no weights
 294800641//no swearing
 1353915069 //bm_tacticalmaps
 1619205043 //better map overviews
@@ -11,28 +9,37 @@
 831437999 //Fine aimpoint red dot
 1096812001 //scope reflection reduction
 1989120573 //aof_mapdata
-//1202835280 //christmas_house_coop - soundtrack
-//2168116352 //de_centered assets
-//874219657 //takbar soundscapes
-//2010310686 //ins_tosca_v1 soundpacks
-//2169963412 //c2m2_fairgrounds_d content
+1202835280 //christmas_house_coop - soundtrack
+2168116352 //de_centered assets
+874219657 //takbar soundscapes
+2010310686 //ins_tosca_v1 soundpacks
+2169963412 //c2m2_fairgrounds_d content
+2228294037 //Hunt Gamemode cpsetup mod
 
 //new
-2228294037 //Hunt Gamemode cpsetup mod
+2348486836 //frequency_coop
+2347162033 //bridge_coop_2021
+2267598925 //ins_prison_2020_new checkpoint
+2240929834 //badel_coop_2020 checkpoint
+2296749488 //kunar checkpoint
+2265996024 //ins_italy_coop checkpoint
+
+1574936010 //cutoff4-9 checkpoint | hunt
+393352418 //karkand_coop checkpoint | hunt
+523594320 //osama_b3_checkpoint checkpoint | hunt
+2257195565 //hesitation_coop_ins checkpoint | hunt
+
+//maps
 1893781116 //badlands_b2 checkpoint | hunt | conquer
 2056663169 //hideout_b2 hunt
 432649454 //ps7 checkpoint hunt
 822609478 //ins_bridgeatremagen_coop checkpoint hunt conquer
-
-//maps
 2208434069 //cobblestone checkpoint
 440046323 //shellshock checkpoint
 815189600 //cs_workout_v1
 1555495013 //nightfall_coopv1_2
-1479939653 //pipeline_coop
 1586272232 //ins_abdallah_coop_fix no mm
 318205420 //block_party_coop_ws
-1189448765 //miransh_alpha 
 1648713738 //cs_agency_ins_b2
 2191010494 //dust_new
 939871975 //shrine_coop_v1 no mm
@@ -56,7 +63,6 @@
 292081732 //mm launch_control_coop_ws checkpoint
 2148192104 //inferno_new checkpoint
 2138928341 //de_coldwater checkpoint
-784571258 //frequency hunt/conquer/survival/outpost
 1172671775 //warehouse_coopv3b4 checkpoint
 650616844 //estates_b4 checkpoint|hunt|outpost|survival|conquer
 573278223 //panama_canal_b2 checkpoint|hunt|outpost|conquer
@@ -68,8 +74,6 @@
 2071869506 //l4d2_bridge checkpoint
 2027743806 //iron_express_b2 checkpoint
 426720530 //baghdad_b5 checkpoint
-616494611 //bridge_coop_optimized_v1 checkpoint
-1207457291 //cs_italy_coop checkpoint
 1568832749 //cs_downtown checkpoint
 346843105 //the_burbs_coop checkpoint
 1202839339 //de_vertigo_coop checkpoint
@@ -101,6 +105,9 @@
 1125220551 //caves_coop checkpoint
 
 //good but disabled
+//784571258 //frequency hunt/conquer/survival/outpost
+//616494611 //bridge_coop_optimized_v1 checkpoint
+//2216672715 //nw_gamemode all weapons with no weights
 //890084623 //bm_mapvoteimages
 //875092844 //server bots for vs modes 
 //2073039422 //dusty_nights_coop checkpoint

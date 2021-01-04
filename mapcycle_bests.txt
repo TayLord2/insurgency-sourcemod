@@ -27,7 +27,8 @@ block_party_coop_ws checkpoint
 ins_italy_coop checkpoint
 badel_coop_2020 checkpoint
 ins_prison_2020_new checkpoint
-
+frequency_coop checkpoint
+bridge_coop_2021 checkpoint
 buhriz_coop checkpoint
 district_coop checkpoint
 contact_coop checkpoint
@@ -49,13 +50,13 @@ cobblestone hunt
 shellshock hunt
 baghdad_b5 hunt
 convoy_coopv1 hunt
-clean_sweep_coop_ws hunt
+//clean_sweep_coop_ws hunt
 almaden_coop_v1_1 hunt
 tet_b1 hunt
 dust_new hunt
 congress hunt
 crossbow hunt
-frequency hunt
+frequency_coop hunt
 estates_b4 hunt
 block_party_coop_ws hunt
 iron_express_b2 hunt

@@ -19,6 +19,7 @@ ps7 checkpoint //mm awesome siberia sniper + assault
 ins_tosca_v1 checkpoint //mm fantastic map like italy
 takbar checkpoint //mm awesome difficult
 tet_b1 checkpoint //mm Amazing
+kunar checkpoint
 tet_b1 hunt
 tet_b1 conquer
 depot_ws_1 checkpoint
@@ -27,6 +28,7 @@ l4d_airport_terminal_b3 checkpoint //mm
 crossbow checkpoint //mm
 crossbow conquer
 crossbow hunt
+bridge_coop_2021 checkpoint
 badlands_b2 checkpoint //mm
 badlands_b2 conquer
 badlands_b2 hunt
@@ -34,7 +36,6 @@ fortress_coop_ws checkpoint //mm incredibly unique map
 amber_spirits_coop checkpoint  //mm squicky doors
 l4d2_bridge checkpoint //mm
 inferno_new_v1 checkpoint //mm
-cs_italy_coop checkpoint //mm 10!
 de_vertigo_coop checkpoint //mm
 szepezd_redux_coop checkpoint //mm
 de_train_csgo_pb2 checkpoint //mm 10!
@@ -49,8 +50,8 @@ gizab_aof checkpoint //mm difficult
 launch_control_coop_ws checkpoint //mm 
 hideout_b2 hunt //mm
 peak_coop checkpoint //mm
-frequency hunt //mm
-frequency conquer
+frequency_coop hunt //mm
+frequency_coop checkpoint
 de_centered_v1 checkpoint //mm small
 fairgrounds checkpoint
 almaden_coop_v1_1 checkpoint //mm awesome
@@ -63,7 +64,7 @@ jail_break_coop_ws checkpoint //mm awesome, but hard to navigate and need flashl
 sotu_city checkpoint //mm really big
 l4d_viennacalling_city_b1 checkpoint //mm
 shellshock checkpoint
-ins_bridgeatremagen_coop checkpoint
+ins_bridgeatremagaaaen_coop checkpoint
 ins_bridgeatremagen_coop hunt
 ins_bridgeatremagen_coop conquer
 shellshock hunt
@@ -72,7 +73,21 @@ baghdad_b5 hunt
 cobblestone hunt
 almaden_coop_v1_1 hunt
 dusty_anguish_coopvfix hunt
-amber_spirits_coop hunt
+clean_sweep_coop_ws hunt
+iron_express_b2 hunt
+convoy_coopv1 hunt
+hesitation_coop_ins checkpoint 
+ins_italy_coop checkpoint
+osama_b3_checkpoint checkpoint
+cutoff4-9 checkpoint 
+karkand_coop_p1_redux_v1_7 checkpoint
+karkand_coop_p1_redux_v1_7 hunt
+ins_italy_coop hunt
+osama_b3_checkpoint hunt
+hesitation_coop_ins hunt
+cutoff4-9 hunt
+gauntlet checkpoint
+de_aqueduct_d checkpoint // great map
 
 //iffy
 ps7 hunt
@@ -80,11 +95,10 @@ jail_break_op_a01 hunt //hard to navigate if you haven't played
 de_coldwater checkpoint //mm water graphics
 oms_corridor_coopb3 checkpoint //glitchy for me when playing players connected
 shop_invasion_coop_b2 checkpoint //no mm, but great
-bridge_coop_optimized_v1 checkpoint //no mm
 warehouse_coopv3b4 checkpoint //no mm some weird graphics. Long. Needs like 40 bots Goes till M
 //crossbow survival //mm
 caves_coop checkpoint //no mm
-de_breach_d checkpoint //mm some weird graphics outside
+de_breach_d checkpoint //mm 400MB massive file
 cs_office_coop_b2 checkpoint //mm grouped spawns
 l4d_ga_b2_day checkpoint //mm good
 docks_coopb2_day checkpoint //mm areas you can get stuck int
@@ -98,8 +112,7 @@ panama_canal_b2 hunt
 arcate_aof checkpoint //mm small
 zagros_convoy_b5 checkpoint //no mm and very difficult. sniped
 //estates_b4 survival
-de_aqueduct_d checkpoint // great map
-de_aqueduct_d hunt //some weird spawns
+depot_ws_1 hunt //bunched bots
 
 //sdk_oil_d hunt
 //de_prodigy_coop checkpoint //mm small

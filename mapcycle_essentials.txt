@@ -19,7 +19,6 @@ fortress_coop_ws checkpoint
 amber_spirits_coop checkpoint  
 dedust1p2_aof checkpoint 
 inferno_new_v1 checkpoint 
-cs_italy_coop checkpoint 
 de_vertigo_coop checkpoint 
 de_train_csgo_pb2 checkpoint 
 congress_coop checkpoint 
@@ -35,8 +34,11 @@ cs_downtown_coop checkpoint
 de_mirage_csco_pb4 checkpoint 
 congress conquer
 congress hunt
-szepezd_redux_coop checkpoint 
+szepezd_redux_coop checkpoint
+frequency_coop checkpoint
+frequency_coop hunt
 l4d2_bridge checkpoint 
+bridge_coop_2021 checkpoint
 l4d_ga_b2_day checkpoint
 jack_hammer_coopvfix checkpoint 
 launch_control_coop_ws checkpoint
@@ -51,6 +53,7 @@ iron_express_b2 checkpoint
 //cs_workout_v1 checkpoint
 cs_agency_ins_b2 checkpoint
 dust_new checkpoint
+kunar checkpoint
 dust_new hunt
 nightfall_coopv1_2 checkpoint
 pl_minecraft_redstone_f15_ins_b checkpoint
@@ -59,6 +62,19 @@ bunker_busting_coop_ws checkpoint
 block_party_coop_ws checkpoint
 dusty_anguish_coopvfix checkpoint
 warehouse_coopv3b4 checkpoint
+
+hesitation_coop_ins checkpoint 
+ins_italy_coop checkpoint
+osama_b3_checkpoint checkpoint
+cutoff4-9 checkpoint 
+karkand_coop_p1_redux_v1_7 checkpoint
+gauntlet checkpoint
+
+karkand_coop_p1_redux_v1_7 hunt
+ins_italy_coop hunt
+osama_b3_checkpoint hunt
+hesitation_coop_ins hunt
+cutoff4-9 hunt
 
 buhriz hunt
 contact hunt
@@ -74,6 +90,14 @@ sinjar hunt
 station hunt
 uprising hunt
 verticality hunt
+iron_express_b2 hunt
+dusty_anguish_coopvfix hunt
+cobblestone hunt
+shellshock hunt
+baghdad_b5 hunt
+convoy_coopv1 hunt
+clean_sweep_coop_ws hunt
+almaden_coop_v1_1 hunt
 
 buhriz_coop checkpoint
 district_coop checkpoint

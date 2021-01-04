@@ -455,18 +455,20 @@ public Action:Event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
         //Trigger end game if enabled and cache is blown
         if(GetConVarInt(EndRoundEnabled) && cacheDestroyed && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount)+1)) )
         {
-            if(EndRoundTimer != INVALID_HANDLE) //create first timer
+            if(EndRoundTimer == INVALID_HANDLE) //create first timer
             {
-                KillTimer(EndRoundTimer);
-                EndRoundTimer = INVALID_HANDLE;
+                // KillTimer(EndRoundTimer);
+                // EndRoundTimer = INVALID_HANDLE;
                 EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
-            }
-            else //if timer already started then start it over as more bots die
-            {
                 if(!g_EndRound)
                     PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
-                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
             }
+            // else //if timer already started then start it over as more bots die
+            // {
+                //  if(!g_EndRound)
+            //         PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
+            //     //EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            // }
         }
         //only count bot kills if respawns aren't maxed out
         if(g_lifecount != g_maxLives) g_botdeaths++;
@@ -632,21 +634,23 @@ public Action:Event_ObjectDestroyed(Handle:event, const String:name[], bool:dont
         RespawnTeam(); //Respawn whole team even if lifecount shouldn't allow it
         PrintToChatAll("Finish off the Insurgents!");
 
-         //Trigger end game if enabled and cache is blown
+         //Trigger end game if enabled and enough bots are already killed
         if(GetConVarInt(EndRoundEnabled) && (GetTeamInsCount() <= (GetConVarInt(EndRoundBotCount))) )
         {
-            if(EndRoundTimer != INVALID_HANDLE) //create first timer
-            {
-                KillTimer(EndRoundTimer);
-                EndRoundTimer = INVALID_HANDLE;
+            if(EndRoundTimer == INVALID_HANDLE) //create first timer
+            { 
+                // KillTimer(EndRoundTimer);
+                // EndRoundTimer = INVALID_HANDLE;
                 EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
-            }
-            else //if timer already started then start it over as more bots die
-            {
                 if(!g_EndRound)
-                    PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
-                EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+                    PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));            
             }
+            // else //if timer already started then start it over as more bots die
+            // {
+            //     if(!g_EndRound)
+            //         PrintToChatAll("Victory declared in %0.1f minutes",GetConVarFloat(EndRoundTimerLength));
+            // //     EndRoundTimer = CreateTimer(GetConVarFloat(EndRoundTimerLength)*60,EndRound,_,TIMER_FLAG_NO_MAPCHANGE);
+            // }
         }
 
     }

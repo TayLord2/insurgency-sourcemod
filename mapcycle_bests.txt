@@ -5,6 +5,7 @@ crossbow checkpoint
 fortress_coop_ws checkpoint 
 clean_sweep_coop_ws checkpoint 
 winter_rescue_ws checkpoint 
+convoy_pve checkpoint
 station_aof checkpoint 
 the_burbs_coop checkpoint 
 baghdad_b5 checkpoint 
@@ -39,9 +40,10 @@ market_coop checkpoint
 ministry_coop checkpoint
 siege_coop checkpoint
 sinjar_coop checkpoint
+ins_workout checkpoint
 tell_coop checkpoint
 verticality_coop checkpoint
-
+citadel_coop checkpoint
 jack_hammer_coopvfix hunt
 osama_b3_checkpoint hunt
 cutoff4-9 hunt
@@ -49,8 +51,7 @@ dusty_anguish_coopvfix hunt
 cobblestone hunt
 shellshock hunt
 baghdad_b5 hunt
-convoy_coopv1 hunt
-//clean_sweep_coop_ws hunt
+convoy_pve hunt
 almaden_coop_v1_1 hunt
 tet_b1 hunt
 dust_new hunt
@@ -88,7 +89,7 @@ tell conquer
 verticality conquer
 tet_b1 conquer
 crossbow conquer
-
+convoy_pve conquer
 //hesitation_coop_ins checkpoint 
 //karkand_coop_p1_redux_v1_7 checkpoint
 //embassy hunt
@@ -96,3 +97,4 @@ crossbow conquer
 //karkand_coop_p1_redux_v1_7 hunt
 //market hunt
 //hideout_b2 hunt
+//clean_sweep_coop_ws hunt

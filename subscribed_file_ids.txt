@@ -1,5 +1,4 @@
 1387290860 //The armory with all modes - hunt
-885304038 //The armory expanded for all modes - survival
 294800641//no swearing
 1353915069 //bm_tacticalmaps
 1619205043 //better map overviews
@@ -10,48 +9,43 @@
 1096812001 //scope reflection reduction
 1989120573 //aof_mapdata
 1202835280 //christmas_house_coop - soundtrack
-2168116352 //de_centered assets
-874219657 //takbar soundscapes
-2010310686 //ins_tosca_v1 soundpacks
-2169963412 //c2m2_fairgrounds_d content
+
+//not neccessary here
+//2168116352 //de_centered assets
+//874219657 //takbar soundscapes
+//2010310686 //ins_tosca_v1 soundpacks
+//2169963412 //c2m2_fairgrounds_d content
 2228294037 //Hunt Gamemode cpsetup mod
 
-//new
+//maps
+2361038040 //citadel_coop 
+2373005014 //ins_workout
+2352663377 //convoy_pve
 2348486836 //frequency_coop
 2347162033 //bridge_coop_2021
 2267598925 //ins_prison_2020_new checkpoint
 2240929834 //badel_coop_2020 checkpoint
 2296749488 //kunar checkpoint
 2265996024 //ins_italy_coop checkpoint
-
 1574936010 //cutoff4-9 checkpoint | hunt
-393352418 //karkand_coop checkpoint | hunt
 523594320 //osama_b3_checkpoint checkpoint | hunt
-2257195565 //hesitation_coop_ins checkpoint | hunt
-
-//maps
 1893781116 //badlands_b2 checkpoint | hunt | conquer
 2056663169 //hideout_b2 hunt
-432649454 //ps7 checkpoint hunt
 822609478 //ins_bridgeatremagen_coop checkpoint hunt conquer
 2208434069 //cobblestone checkpoint
 440046323 //shellshock checkpoint
-815189600 //cs_workout_v1
 1555495013 //nightfall_coopv1_2
-1586272232 //ins_abdallah_coop_fix no mm
 318205420 //block_party_coop_ws
 1648713738 //cs_agency_ins_b2
 2191010494 //dust_new
 939871975 //shrine_coop_v1 no mm
 283120201 //bunker_busting_coop_ws
-1725689439 //pl_minecraft_redstone_f15_ins_b
 1380554985 //dusty_anguish_coopv1_1
 1083625356 //depot_ws_1 checkpoint
 2034193905 //gauntlet checkpoint small mm
 1268701704 //mm l4d_viennacalling_city_b1 checkpoint
 1832309723 //sotu_city checkpoint mm/overview big
 1217898298 //l4d_mercy_hospital_b5 checkpoint small
-1989124779 //arcate_aof checkpoint
 2169943977 //c2m2_fairgrounds_d checkpoint 20 player support
 2168078889 //de_centered_v1 checkpoint small
 2073102241 //jail_break_op_a01 hunt
@@ -59,12 +53,9 @@
 2110527993 //mm peak_coop checkpoint
 2107007637 //mm de_breach_d checkpoint weird graphics outside
 1998338008 //mm gizab_aof checkpoint great
-1469832785 //mm cs_office_coop_b2 checkpoint grouped spawns
 292081732 //mm launch_control_coop_ws checkpoint
 2148192104 //inferno_new checkpoint
 2138928341 //de_coldwater checkpoint
-1172671775 //warehouse_coopv3b4 checkpoint
-650616844 //estates_b4 checkpoint|hunt|outpost|survival|conquer
 573278223 //panama_canal_b2 checkpoint|hunt|outpost|conquer
 1380562255 //jack_hammer_coopv1_2 checkpoint
 605055192 //crossbow checkpoint|hunt|survival|conquer
@@ -78,9 +69,7 @@
 346843105 //the_burbs_coop checkpoint
 1202839339 //de_vertigo_coop checkpoint
 2112742937 //de_aqueduct_d checkpoint
-1743348046 //de_train_csgo_pb2 checkpoint
 797028573 //congress_coop checkpoint
-1126512454 //convoy_coopv1 checkpoint
 1989125473 //dedust1p2_aof checkpoint
 498255733 //clean_sweep_coop_ws checkpoint
 1501827880 //l4d_ga_b2_day checkpoint
@@ -91,7 +80,6 @@
 1989129424 //station_aof checkpoint
 939873335 // shop_invasion_coop_b2 checkpoint
 2010242125 //kandagal_aof checkpoint
-248148672//anbar_coop checkpoint
 517972533 //zagros_convoy_b5 checkpoint
 1148522368 //healthcenter_coop_fixbysakey checkpoint
 1083704311 //almaden_coop_v1_1 checkpoint
@@ -102,11 +90,25 @@
 2010282416 //ins_tosca_v1 checkpoint
 1734873741 //de_mirage_csco_pb4 checkpoint
 2015565348 //szepezd_redux_coop checkpoint
-1125220551 //caves_coop checkpoint
 
 //good but disabled
+//885304038 //The armory expanded for all modes - survival
+//1126512454 //convoy_coopv1 checkpoint -> replaced by convoy_pve
 //784571258 //frequency hunt/conquer/survival/outpost
 //616494611 //bridge_coop_optimized_v1 checkpoint
+//650616844 //estates_b4 checkpoint|hunt|outpost|survival|conquer
+//1172671775 //warehouse_coopv3b4 checkpoint
+//1743348046 //de_train_csgo_pb2 checkpoint
+//1562834364 //ins_chinatown
+//248148672//anbar_coop checkpoint
+//1125220551 //caves_coop checkpoint
+//1469832785 //mm cs_office_coop_b2 checkpoint grouped spawns
+//1989124779 //arcate_aof checkpoint
+//1725689439 //pl_minecraft_redstone_f15_ins_b
+//1586272232 //ins_abdallah_coop_fix no mm
+//2257195565 //hesitation_coop_ins checkpoint | hunt
+//432649454 //ps7 checkpoint hunt
+//393352418 //karkand_coop checkpoint | hunt
 //2216672715 //nw_gamemode all weapons with no weights
 //890084623 //bm_mapvoteimages
 //875092844 //server bots for vs modes 
@@ -119,3 +121,4 @@
 //501104499 //prospect_coop_b6 checkpoint|hunt|outpost|conquer
 //695181010 //Hideout hunt
 //532461305 //badlands_b1 checkpoint|hunt|outpost|conquer
+//815189600 //cs_workout_v1
